@@ -2,6 +2,7 @@ const navbar = document.querySelector('#navbar');
 let clients = document.querySelector('#clients');
 let sedi = document.querySelector('#sedi');
 let collaboratori = document.querySelector('#collaboratori');
+const header = document.querySelector('.custom-hedaer');
 
 window.addEventListener('scroll', () => {
     if(window.scrollY >= 20){
@@ -35,6 +36,18 @@ function numeroIncrementato(num, element, intervallo){
     }, intervallo)
 }
 
-numeroIncrementato(500, clients, 10);
-numeroIncrementato(50, sedi, 50);
-numeroIncrementato(400, collaboratori, 10);
+// INTERSECTION OBSERVER = una classe, un oggetto predefinito e costruito e che non può essere modificato dall'esterno
+// al massimo può essere customizzato
+// IntersectionObserver() vuole un parametro che a sua volta accetta come parametro degli elementi da intersecare (entries)
+
+let observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if(entry.isIntersecting){
+            numeroIncrementato(500, clients, 10);
+            numeroIncrementato(50, sedi, 50);
+            numeroIncrementato(400, collaboratori, 10);
+        }
+    })
+});
+
+observer.observe(clients);
