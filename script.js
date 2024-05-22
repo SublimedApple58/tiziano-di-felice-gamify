@@ -40,12 +40,16 @@ function numeroIncrementato(num, element, intervallo){
 // al massimo può essere customizzato
 // IntersectionObserver() vuole un parametro che a sua volta accetta come parametro degli elementi da intersecare (entries)
 
+let confirm = false
+
 let observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        if(entry.isIntersecting){
+        if(entry.isIntersecting && confirm == false){
             numeroIncrementato(500, clients, 10);
             numeroIncrementato(50, sedi, 50);
             numeroIncrementato(400, collaboratori, 10);
+
+            confirm = true;
         }
     })
 });
